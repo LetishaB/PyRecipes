@@ -18,4 +18,4 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(Ingredient)
     directions = models.ManyToManyField(Direction)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateField()
+    created_at = models.DateField(auto_now_add=True)

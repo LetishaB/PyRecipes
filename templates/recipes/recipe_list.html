@@ -1,0 +1,13 @@
+{% load static %}
+
+<h1>Recipes</h1>
+<ul>
+{% for recipe in object_list %}
+    <h1>{{ recipe.title }}</h1>
+    <span>{{ recipe.created_at|date }} | Created by: {{ recipe.created_by }}</span>
+    <img src="{{ recipe.image }}" alt="Image for Recipe" style="height: 400px; width: 400px"/>
+    <p>{{ recipe.description }}</p>
+{% empty %}
+    <li>No recipes yet.</li>
+{% endfor %}
+</ul>

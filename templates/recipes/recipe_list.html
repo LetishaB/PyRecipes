@@ -1,13 +1,19 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<h1>Recipes</h1>
-<ul>
-{% for recipe in object_list %}
-    <h1>{{ recipe.title }}</h1>
-    <span>{{ recipe.created_at|date }} | Created by: {{ recipe.created_by }}</span>
-    <img src="{{ recipe.image }}" alt="Image for Recipe" style="height: 400px; width: 400px"/>
-    <p>{{ recipe.description }}</p>
-{% empty %}
-    <li>No recipes yet.</li>
-{% endfor %}
-</ul>
+{% block content %}
+    <div class="row">
+        {% for recipe in object_list %}
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+              <img src="{{ recipe.image }}" class="card-img-top" alt="Thumbnail image for Recipe">
+              <div class="card-body">
+                  <h2>{{ recipe.title }}</h2>
+                  <p class="card-text">{{ recipe.description|truncatechars:150 }}</p>
+              </div>
+          </div>
+        </div>
+        {% empty %}
+            <li>No recipe posted yet.</li>
+        {% endfor %}
+    </div>
+{% endblock %}

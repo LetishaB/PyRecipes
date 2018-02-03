@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <img src="/{{ recipe.image }}" class="card-img-top detail-image" alt="Thumbnail image for Recipe">
+    </div>
+    <div class="row white card-body">
+        <div class="col-md-9">
+            <h1>{{ recipe.title }}</h1>
+        </div>
+        <div class="col-md-3">
+            <small class="text-muted">Created by {{ recipe.created_by }} at {{ recipe.created_at }}</small>
+        </div>
+    </div>
+    <div class="row white card-body">
+        <p>{{ recipe.description }}</p>
+    </div>
+    <div class="row white card-body">
+        <div class="col-md-6">
+            <h2>Ingredients</h2>
+            <ul>
+            {% for ingredient in recipe.ingredients.all %}
+                <li>{{ ingredient }}</li>
+            {% empty %}
+                <p>There are no ingredients added to this recipe.</p>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2>Directions</h2>
+            <ol>
+            {% for direction in recipe.directions.all %}
+                <li>{{ direction }}</li>
+            {% empty %}
+                <p>There are no instructions for this recipe.</p>
+            {% endfor %}
+            </ol>
+        </div>
+    </div>
+    <div class="row white card-body">
+        <div class="d-flex justify-content-between">
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Back</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

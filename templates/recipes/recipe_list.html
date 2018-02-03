@@ -3,7 +3,8 @@
 {% block content %}
     <div class="row">
         {% for recipe in object_list %}
-        <div class="col-md-4">
+        <div class="col-md-4 detail-container">
+        <a href="{% url 'detail' recipe.id %}" class="detail-link">
           <div class="card mb-4 box-shadow">
               <img src="{{ recipe.image }}" class="card-img-top" alt="Thumbnail image for Recipe">
               <div class="card-body">
@@ -11,6 +12,7 @@
                   <p class="card-text">{{ recipe.description|truncatechars:150 }}</p>
               </div>
           </div>
+        </a>
         </div>
         {% empty %}
             <li>No recipe posted yet.</li>

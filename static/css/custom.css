@@ -1,0 +1,24 @@
+.detail-link {
+    color: #212529;
+}
+
+.detail-link:hover {
+    color: #212529;
+    text-decoration: none;
+}
+
+.detail-container {
+    transition: all .2s ease-in-out;
+}
+
+.detail-container:hover {
+    transform: scale(1.1);
+}
+
+.white {
+    background-color: white;
+}
+
+.detail-image {
+    height: 100%;
+}

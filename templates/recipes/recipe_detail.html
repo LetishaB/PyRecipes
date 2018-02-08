@@ -41,8 +41,10 @@
         <div class="d-flex justify-content-between">
             <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.history.back()">Back</button>
-                <a href="{% url 'update' recipe.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                <a href="{% url 'delete' recipe.id %}" class="btn btn-sm btn-outline-secondary">Delete</a>
+                {% if user.is_authenticated and user == recipe.created_by %}
+                    <a href="{% url 'update' recipe.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a href="{% url 'delete' recipe.id %}" class="btn btn-sm btn-outline-secondary">Delete</a>
+                {% endif %}
             </div>
         </div>
     </div>

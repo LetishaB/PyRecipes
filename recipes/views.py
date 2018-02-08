@@ -1,6 +1,7 @@
 # Create your views here.
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView, CreateView
 
@@ -30,7 +31,7 @@ class RecipeCreate(CreateView):
     fields = visible_field_list
 
     def form_valid(self, form):
-        form.instance.created_by = self.request.user
+        form.instance.user = self.request.user
         return super(RecipeCreate, self).form_valid(form)
 
 
@@ -39,10 +40,10 @@ class RecipeUpdate(UpdateView):
     fields = visible_field_list
     template_name_suffix = '_update_form'
 
-    def get_form_kwargs(self):
-        kwargs = super(RecipeUpdate, self).get_form_kwargs()
-        kwargs['request'] = self.request
-        return kwargs
+    def dispatch(self, request, *args, **kwargs):
+        if request.user == self.get_object().created_by:
+            return super(RecipeUpdate, self).dispatch(request, *args, **kwargs)
+        raise Http404
 
     def get_context_data(self, **kwargs):
         context = super(RecipeUpdate, self).get_context_data(**kwargs)
@@ -54,3 +55,8 @@ class RecipeUpdate(UpdateView):
 class RecipeDelete(DeleteView):
     model = Recipe
     success_url = reverse_lazy('recipe-list')
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user == self.get_object().created_by:
+            return super(RecipeDelete, self).dispatch(request, *args, **kwargs)
+        raise Http404

@@ -127,3 +127,6 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+LOGIN_REDIRECT_URL = ('recipe-list')
+LOGOUT_REDIRECT_URL = ('recipe-list')

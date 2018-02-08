@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="row white card-body">
+        <h2>"{{ recipe.title }}" will be deleted. Are you sure?</h2>
+    </div>
+    <div class="row white card-body">
+        <div class="d-flex justify-content-between">
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.history.back()">Back</button>
+                <input type="submit" class="btn btn-sm btn-outline-secondary" value="Confirm deletion" name="confirm_delete" />
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

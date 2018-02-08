@@ -1,6 +1,7 @@
 # Create your views here.
 from django import forms
-from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView, DeleteView
 
 from recipes.models import Recipe, Ingredient, Direction
 
@@ -32,3 +33,8 @@ class RecipeUpdate(UpdateView):
         context['ingredients'] = Ingredient.objects.all()
         context['directions'] = Direction.objects.all()
         return context
+
+
+class RecipeDelete(DeleteView):
+    model = Recipe
+    success_url = reverse_lazy('recipe-list')

@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'recipes.apps.RecipesConfig',
     'bootstrap4',
-    'django_select2',
 ]
 
 MIDDLEWARE = [

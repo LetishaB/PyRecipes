@@ -29,6 +29,10 @@ class RecipeCreate(CreateView):
     model = Recipe
     fields = visible_field_list
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super(RecipeCreate, self).form_valid(form)
+
 
 class RecipeUpdate(UpdateView):
     model = Recipe

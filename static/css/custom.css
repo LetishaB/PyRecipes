@@ -19,6 +19,10 @@
     background-color: white;
 }
 
-.detail-image {
-    height: 100%;
+.card-img-top.detail-image {
+    height: 100% !important;
+}
+
+.card-img-top {
+    height: 235px;
 }

@@ -1,11 +1,16 @@
 # Create your views here.
 from django import forms
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import UpdateView, DeleteView, CreateView
 
 from recipes.models import Recipe, Ingredient, Direction
 
 visible_field_list = ['title', 'description', 'image', 'ingredients', 'directions']
+
+
+class RecipeCreate(CreateView):
+    model = Recipe
+    fields = visible_field_list
 
 
 class RecipeForm(forms.ModelForm):

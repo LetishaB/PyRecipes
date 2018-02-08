@@ -18,12 +18,13 @@ from django.urls import path
 from django.views.generic import ListView, DetailView
 
 from recipes.models import Recipe
-from recipes.views import RecipeUpdate, RecipeDelete
+from recipes.views import RecipeUpdate, RecipeDelete, RecipeCreate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ListView.as_view(model=Recipe), name='recipe-list'),
     path('recipe/<int:pk>/', DetailView.as_view(model=Recipe), name='detail'),
+    path('recipe/create/', RecipeCreate.as_view(), name='new'),
     path('recipe/update/<int:pk>/', RecipeUpdate.as_view(), name='update'),
     path('recipe/delete/<int:pk>/', RecipeDelete.as_view(), name='delete'),
 ]
